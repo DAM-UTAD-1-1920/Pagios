@@ -1,38 +1,33 @@
 package DavidCachero;
 
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.TreeSet;
 
 public class Main452 {
 	public static void main(String[] args) {
-		int[] numero = new int[2];
-		int bolas;
-		int contador = 0;
-		TreeSet<Integer> ganado = new TreeSet<>();
-		try (Scanner in = new Scanner(System.in)) {
-			while (contador == 0) {
-				bolas = in.nextInt();
-				numero = new int[bolas];
-				if (bolas == 0) {
-					return;
-				}
-				for (int i = 0; i < numero.length; i++) {
-					numero[i] = in.nextInt();
-				}
-				for (int i = 0; i < numero.length - 1; i++) {
-					for (int j = i + 1; j < numero.length; j++)
-						ganado.add(Math.abs(numero[j] - numero[i]));
-				}
-				for (int elemto : ganado) {
-					System.out.print(elemto);
-					if (contador < ganado.size() - 1) {
-						System.out.print(" ");
-						contador++;
-					}
-				}
-				System.out.println();
-				ganado.removeAll(ganado);
-				contador = 0;
+		int[] bingo;
+		int numeros;
+		TreeSet<Integer> lista;
+		Scanner s = new Scanner(System.in);
+		while (true) {
+			numeros = s.nextInt();
+			if (numeros == 0)
+				break;
+			lista = new TreeSet<>();
+			bingo = new int[numeros];
+			for (int i = 0; i < numeros; i++)
+				bingo[i] = s.nextInt();
+			for (int i = 0; i < numeros - 1; i++)
+				for (int j = i + 1; j < numeros; j++)
+					lista.add(Math.abs(bingo[i] - bingo[j]));
+			Iterator<Integer> i = lista.iterator();
+			while (i.hasNext()) {
+				System.out.print(i.next());
+				if (i.hasNext())
+					System.out.print(" ");
+				else
+					System.out.println();
 			}
 		}
 	}
