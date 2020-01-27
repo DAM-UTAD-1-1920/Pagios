@@ -5,39 +5,39 @@ import java.util.Scanner;
 
 public class Main144 {
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+		Scanner s = new Scanner(System.in);
 		ArrayList<Character> letras;
-		String pulsadas;
-		int posición;
-		while (scan.hasNext()) {
-			pulsadas = scan.nextLine();
-			posición = 0;
+		String presionadas;
+		int pos;
+		while (s.hasNext()) {
+			presionadas = s.nextLine();
+			pos = 0;
 			letras = new ArrayList<>();
-			for (int i = 0; i < pulsadas.length(); i++) {
-				switch (pulsadas.charAt(i)) {
+			for (int i = 0; i < presionadas.length(); i++) {
+				switch (presionadas.charAt(i)) {
 				case '-':
-					posición = 0;
+					pos = 0;
 					break;
 				case '*':
-					posición++;
+					pos++;
 					break;
 				case '3':
-					if (!letras.isEmpty() && posición <= letras.size() - 1)
-						letras.remove(posición);
+					if (!letras.isEmpty() && pos <= letras.size() - 1)
+						letras.remove(pos);
 					break;
 				case '+':
 					if (letras.isEmpty())
-						posición = 0;
+						pos = 0;
 					else
-						posición = letras.size();
+						pos = letras.size();
 					break;
 				default:
-					if (posición > letras.size())
+					if (pos > letras.size())
 						if (!letras.isEmpty())
-							posición = letras.size();
+							pos = letras.size();
 						else
-							posición = 0;
-					letras.add(posición++, pulsadas.charAt(i));
+							pos = 0;
+					letras.add(pos++, presionadas.charAt(i));
 				}
 			}
 			for (Character c : letras)
