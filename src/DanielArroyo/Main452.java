@@ -1,36 +1,32 @@
 package DanielArroyo;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main452 {
 	public static void main(String[] args) {
-		try (Scanner scanner = new Scanner(System.in)) {
-			int bolas = scanner.nextInt();
-			int cont = 0;
-			int[] nums = new int[bolas];
-			HashSet<Integer> resultado = new HashSet<Integer>();
-			while (bolas != 0) {
-				for (int i = 0; i < bolas; i++) {
-					nums[i] = scanner.nextInt();
-				}
-				for (int i = 0; i < bolas - 1; i++) {
-					for (int j = i + 1; j < bolas; j++)
-						resultado.add(Math.abs(nums[i] - nums[j]));
-				}
-				for (Integer elto : resultado) {
-					System.out.print(elto);
+		Scanner s = new Scanner(System.in);
 
-					if (cont < resultado.size() - 1) {
-						System.out.print(" ");
-						cont++;
-					}
-				}
-				System.out.println();
-				resultado.removeAll(resultado);
-				bolas = scanner.nextInt();
-				cont = 0;
+		int numeros;
+		int[] bingo;
+		TreeSet<Integer> lista;
+		while (true) {
+			numeros = s.nextInt();
+			if (numeros == 0)
+				break;
+			lista = new TreeSet<>();
+			bingo = new int[numeros];
+			for (int i = 0; i < numeros; i++)
+				bingo[i] = s.nextInt();
+			for (int i = 0; i < numeros - 1; i++)
+				for (int j = i + 1; j < numeros; j++)
+					lista.add(Math.abs(bingo[i] - bingo[j]));
+			Iterator<Integer> i = lista.iterator();
+			while (i.hasNext()) {
+				System.out.print(i.next());
+				if (i.hasNext())
+					System.out.print(" ");
+				else
+					System.out.println();
 			}
 		}
 	}
