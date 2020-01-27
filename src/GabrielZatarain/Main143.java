@@ -8,13 +8,13 @@ public class Main143 {
 	public static boolean caso() {
 		Deque<Integer> tortitas = new ArrayDeque<>();
 		List<Integer> temp = new ArrayList<>();
-		int tamaño;
+		int tamanno;
 		do {
-			tamaño = in.nextInt();
-			if (tamaño >= 0) {
-				tortitas.push(tamaño);
+			tamanno = in.nextInt();
+			if (tamanno >= 0) {
+				tortitas.push(tamanno);
 			}
-		} while (tamaño >= 0);
+		} while (tamanno >= 0);
 
 		if (tortitas.size() == 0) {
 			return false;
