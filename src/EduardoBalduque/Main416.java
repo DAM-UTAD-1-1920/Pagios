@@ -6,27 +6,27 @@ import java.util.TreeSet;
 
 public class Main416 {
 	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		Set<String> cumpleaños;
-		String[] fechas;
+		Scanner s = new Scanner(System.in);
+		Set<String> cumples;
+		String[] fecha;
 		int casos;
-		boolean repetidos = false;
+		boolean repetido;
 		while (true) {
-			casos = in.nextInt();
+			casos = s.nextInt();
 			if (casos == 0)
 				break;
-			cumpleaños = new TreeSet<>();
+			cumples = new TreeSet<>();
+			repetido = false;
 			for (int i = 0; i < casos; i++) {
-				fechas = in.next().split("/");
-				String parte1 = fechas[0];
-				String parte2 = fechas[1];
-				if (cumpleaños.contains(parte1 + parte2)) {
-					repetidos = true;
-				} else {
-					cumpleaños.add(parte1 + parte2);
-				}
+				fecha = s.next().split("/");
+				if (cumples.contains(fecha[0] + " " + fecha[1])) {
+					repetido = true;
+					s.nextLine();
+					break;
+				} else
+					cumples.add(fecha[0] + " " + fecha[1]);
 			}
-			System.out.println((repetidos) ? "SI" : "NO");
+			System.out.println((repetido) ? "SI" : "NO");
 		}
 	}
 }
