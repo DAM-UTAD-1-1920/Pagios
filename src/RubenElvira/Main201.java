@@ -3,16 +3,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-class arbol {
-	char value;
-	arbol left, right;
+class TreeNode {
+	char val;
+	TreeNode left, right;
 
-	arbol(char x) {
-		value = x;
+	TreeNode(char x) {
+		val = x;
 	}
 
 	public String toString() {
-		return value + "";
+		return val + "";
 	}
 }
 
@@ -20,7 +20,7 @@ public class Main201 {
 
 	static int pos;
 	static String input;
-	static boolean uno, dos;
+	static boolean one, two;
 	final static BufferedReader s = new BufferedReader(new InputStreamReader(System.in));
 
 	public static void main(String[] args) throws IOException {
@@ -28,63 +28,52 @@ public class Main201 {
 		while (true) {
 			input = s.readLine();
 			pos = 0;
-			arbol punto = new arbol(input.charAt(pos++));
-			if (punto.value == '.')
+			TreeNode punto = new TreeNode(input.charAt(pos++));
+			if (punto.val == '.')
 				break;
-			leer(punto);
-			uno = dos = true;
-			detec1(punto);
-			detec(punto);
-			if (uno)
+			read(punto);
+			one = two = true;
+			detectOneSon(punto);
+			detectTwoSons(punto);
+			if (one)
 				System.out.print("1");
-			if (dos)
+			if (two)
 				System.out.print("2");
-			if (!uno && !dos)
+			if (!one && !two)
 				System.out.print("N");
 			System.out.println();
 		}
 	}
 
-	static void detec(arbol p) {
-		if (p == null || !dos)
+	static void detectTwoSons(TreeNode p) {
+		if (p == null || !two)
 			return;
 		if ((p.left != null && p.right == null) || (p.left == null && p.right != null))
-			dos = false;
-		detec(p.left);
-		detec(p.right);
+			two = false;
+		detectTwoSons(p.left);
+		detectTwoSons(p.right);
 	}
 
-	static void detec1(arbol p) {
-		if (p == null || !uno)
+	static void detectOneSon(TreeNode p) {
+		if (p == null || !one)
 			return;
 		if (p.left != null && p.right != null) {
-			uno = false;
+			one = false;
 			return;
 		}
-		detec1(p.left);
-		detec1(p.right);
+		detectOneSon(p.left);
+		detectOneSon(p.right);
 	}
 
-	static void detec2(arbol p) {
-		if (p == null || !uno)
-			return;
-		if (p.left != null && p.right != null) {
-			uno = false;
-			return;
-		}
-		detec2(p.left);
-		detec2(p.right);
-	}
-
-	static void leer(arbol p) {
+	static void read(TreeNode p) {
 		if (input.charAt(pos) != '.') {
-			p.left = new arbol(input.charAt(pos++));
-			leer(p.left);
+			p.left = new TreeNode(input.charAt(pos++));
+			read(p.left);
 		}
 		pos++;
 		if (input.charAt(pos) != '.') {
-			p.right = new arbol(input.charAt(pos++));
-			leer(p.right);
+			p.right = new TreeNode(input.charAt(pos++));
+			read(p.right);
 		}
 	}
 
