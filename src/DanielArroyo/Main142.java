@@ -1,34 +1,30 @@
 package DanielArroyo;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main142 {
 	public static void main(String[] args) {
-		int ninios = 0;
-		int cadacuanto;
-		int cont = 0;
-		try (Scanner scanner = new Scanner(System.in)) {
-			while (cont == 0) {
-				ninios = scanner.nextInt();
-				cadacuanto = scanner.nextInt();
-				if (ninios == 0 && cadacuanto == 0) {
-					cont = 1;
-				} else {
-					LinkedList<Integer> juego = new LinkedList<>();
-					for (int i = 1; i <= ninios; i++) {
-						juego.add(i);
-					}
-					int i = -1;
-					while (juego.size() > 1) {
-
-						i = (i + cadacuanto + 1) % juego.size();
-						juego.remove(i);
-						i--;
-					}
-					System.out.println(juego.get(0));
-				}
+		int jugadores;
+		int saltos;
+		int eliminar;
+		ArrayList<Integer> juego;
+		Scanner s = new Scanner(System.in);
+		while (true) {
+			jugadores = s.nextInt();
+			saltos = s.nextInt();
+			if (jugadores == 0 && saltos == 0)
+				break;
+			juego = new ArrayList<>();
+			for (int i = 1; i <= jugadores; i++)
+				juego.add(i);
+			eliminar = 0;
+			while (juego.size() > 1) {
+				eliminar += saltos;
+				eliminar %= juego.size();
+				juego.remove(eliminar);
 			}
+			System.out.println(juego.get(0));
 		}
 	}
 }
