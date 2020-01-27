@@ -5,39 +5,38 @@ import java.util.Stack;
 
 public class Main145 {
 	public static void main(String[] args) {
-		int SOL;
-		char[] TREN;
-		Stack<Character> AMOR;
-		Scanner sc = new Scanner(System.in);
-		while (sc.hasNext()) {
-			SOL = 0;
-			AMOR = new Stack<>();
-			TREN = sc.next().toCharArray();
-			for (int i = 0; i < TREN.length; i++) {
-				switch (TREN[i]) {
+		int res;
+		char[] tren;
+		Stack<Character> parejas;
+		Scanner s = new Scanner(System.in);
+		while (s.hasNext()) {
+			res = 0;
+			parejas = new Stack<>();
+			tren = s.next().toCharArray();
+			for (int i = 0; i < tren.length; i++) {
+				switch (tren[i]) {
 				case '@':
-					AMOR.clear();
+					parejas.clear();
 					break;
 				case 'H':
 				case 'h':
-					AMOR.push(TREN[i]);
+					parejas.push(tren[i]);
 					break;
 				case 'M':
-					if (!AMOR.isEmpty() && AMOR.pop() == 'H')
-						SOL++;
+					if (!parejas.isEmpty() && parejas.pop() == 'H')
+						res++;
 					else
-						AMOR.push(TREN[i]);
+						parejas.push(tren[i]);
 					break;
 				case 'm':
-					if (!AMOR.isEmpty() && AMOR.pop() == 'h')
-						SOL++;
+					if (!parejas.isEmpty() && parejas.pop() == 'h')
+						res++;
 					else
-						AMOR.push(TREN[i]);
+						parejas.push(tren[i]);
 					break;
 				}
 			}
-
-			System.out.println(SOL);
+			System.out.println(res);
 		}
 	}
 }
